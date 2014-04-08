@@ -1,5 +1,5 @@
-/// <reference path="~/app/bower_components/angular/angular.min.js"/>
-/// <reference path="~/app/bower_components/angular-mocks/angular-mocks.js"/>
+/// <reference path="~/bower_components/angular/angular.min.js"/>
+/// <reference path="~/bower_components/angular-mocks/angular-mocks.js"/>
 /// <reference path="~/app/scripts/controllers/main.js"/>
 /// <reference path="~/app/scripts/services/filterService.js"/>
 
