@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Newtonsoft.Json.Serialization;
 using Sentry.Common.Web.Utilities;
 
 namespace AngularConcept
@@ -13,6 +15,9 @@ namespace AngularConcept
     {
         protected void Application_Start()
         {
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
