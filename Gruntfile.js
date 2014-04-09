@@ -362,8 +362,14 @@ module.exports = function (grunt) {
     iisexpress: {
         server: {
             options: {
-                port: 11233
-                //site: 'MvcApplication1'
+                port: 11233,
+				path: require('path').resolve('.') + '\\app'
+            }
+        },
+		dist: {
+            options: {
+                port: 61143,
+				path: require('path').resolve('.') + '\\dist'
             }
         }
     },
@@ -372,6 +378,9 @@ module.exports = function (grunt) {
     open: {
         server: {
             path: 'http://localhost:11233',
+        },
+		dist: {
+            path: 'http://localhost:61143',
         }
     },
 
@@ -380,7 +389,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-        return grunt.task.run(['build', 'connect:dist:keepalive']);
+        //return grunt.task.run(['build', 'connect:dist:keepalive']);
+		return grunt.task.run(['build', 'iisexpress:dist', 'open:dist']);
     }
 
     grunt.task.run([
@@ -390,7 +400,7 @@ module.exports = function (grunt) {
       'autoprefixer',
       //'connect:livereload',
       'iisexpress',
-      'open',
+      'open:server',
       'watch'
     ]);
   });
