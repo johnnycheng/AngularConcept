@@ -54,7 +54,9 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
-      }
+      },
+      files: ['<%= yeoman.app %>/styles/less/*'],
+      tasks: ["less"]
     },
 
     // The actual grunt server settings
@@ -185,7 +187,7 @@ module.exports = function (grunt) {
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
-	cssmin: {
+	  cssmin: {
       options: {
         root: '<%= yeoman.app %>'
       }
@@ -363,13 +365,13 @@ module.exports = function (grunt) {
         server: {
             options: {
                 port: 11233,
-				path: require('path').resolve('.') + '\\app'
+				        path: require('path').resolve('.') + '\\app'
             }
         },
 		dist: {
             options: {
                 port: 61143,
-				path: require('path').resolve('.') + '\\dist'
+				        path: require('path').resolve('.') + '\\dist'
             }
         }
     },
@@ -384,22 +386,34 @@ module.exports = function (grunt) {
         }
     },
 
+    less: {
+        server: {
+          options: {
+            paths: ["app/styles/less"]
+          },
+          files: {
+            "app/styles/main.css": "app/styles/less/main.less"
+          }
+        }
+      }
+
   });
 
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
         //return grunt.task.run(['build', 'connect:dist:keepalive']);
-		return grunt.task.run(['build', 'iisexpress:dist', 'open:dist']);
-    }
+		    return grunt.task.run(['build', 'iisexpress:dist', 'open:dist']);
+    } 
 
     grunt.task.run([
       'clean:server',
       'bower-install',
+      'less',
       'concurrent:server',
       'autoprefixer',
       //'connect:livereload',
-      'iisexpress',
+      'iisexpress:server',
       'open:server',
       'watch'
     ]);
@@ -422,6 +436,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'bower-install',
     'useminPrepare',
+    'less',
     'concurrent:dist',
     'autoprefixer',
     'concat',
@@ -440,6 +455,10 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('createless', [
+    'less'
   ]);
 
 };
