@@ -1,7 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularConcept", "AngularConcept\AngularConcept.csproj", "{E2B1D42E-DA15-404D-92FB-F1D375313059}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularConcept", "app\AngularConcept.csproj", "{E2B1D42E-DA15-404D-92FB-F1D375313059}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{99052FF9-ABB0-40D5-82E2-0363F1DF1F87}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
