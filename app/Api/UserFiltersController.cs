@@ -16,9 +16,9 @@ namespace AngularConcept.Api
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public UserFilter Get(int id)
         {
-            return "value";
+            return new UserFilter { Name = "Filter 1" };
         }
 
         // POST api/<controller>
