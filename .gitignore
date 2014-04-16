@@ -11,3 +11,7 @@ app/bower_components
 
 # NuGet Packages Directory
 packages
+
+# WebStorm
+.idea/workspace.xml
+.idea/tasks.xml

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('angularConceptApp', []);
+var angularConceptApp = angular.module('angularConceptApp', []);

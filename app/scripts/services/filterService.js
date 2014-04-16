@@ -1,22 +1,20 @@
 'use strict';
 
-var servicesModule = angular.module('services', []);
-
-servicesModule.factory('filterService', ['$http', '$q', function(http, q){
+angularConceptApp.factory('filterService', ['$http', '$q', function(http, q){
 
 	function get() {
 		var url = 'api/userfilters';
-		var deffered = q.defer();
+		var deferred = q.defer();
 
 		http.get(url, { withCredentials: true })
-			.success(function(result) { 
-				deffered.resolve(result); 
+			.success(function(result) {
+                deferred.resolve(result);
 			})
-			.error(function() { 
-				deffered.reject(); 
+			.error(function() {
+                deferred.reject();
 			});
 
-		return deffered.promise;
+		return deferred.promise;
 	};
 
 	return { get: get } 
