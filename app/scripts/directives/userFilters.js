@@ -5,20 +5,12 @@ angularConceptApp.directive('userFilters', function(){
         restrict: 'E',
         replace: true,
         templateUrl: 'views/directives/userFilters.html',
-        controller: 'userFiltersController'
+        controller: 'UserFiltersCtrl'
     }
 });
 
-angularConceptApp.controller('userFiltersController', ['$scope', 'filterService', function($scope, filterService){
-    filterService.get()
-        .then(
-        function(result) {
-            $scope.filters = result;
-        },
-        function(error) {
-            console.log('error', error);
-        }
-    )
+angularConceptApp.controller('UserFiltersCtrl', ['$scope', function($scope){
+
 }]);
 
 

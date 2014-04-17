@@ -16,8 +16,8 @@ describe('Controller: MainCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope, $q) {
       scope = $rootScope.$new();
 
+      mockFilterService = { get: function () {} };
       deferred = $q.defer();
-      mockFilterService = sinon.stub({ get: function() {} });
       spyOn(mockFilterService, 'get').andReturn(deferred.promise);
 
       MainCtrl = $controller('MainCtrl', {
@@ -30,6 +30,7 @@ describe('Controller: MainCtrl', function () {
         var mockFilters = [{ name : 'filter 1' }, { name: 'filter 2' }];
         deferred.resolve(mockFilters);
         scope.$apply();
+        expect(mockFilterService.get).toHaveBeenCalled();
         expect(scope.filters.length).toBe(2);
     });
 });
