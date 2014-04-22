@@ -142,15 +142,16 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    'bower-install': {
-      app: {
-        html: '<%= yeoman.app %>/index.html',
-        ignorePath: '<%= yeoman.app %>/'
-      }
-    },
-
-
-
+      bowerInstall: {
+          target: {
+              // Point to the files that should be updated when
+              // you run `grunt bower-install`
+              src: [
+                  '<%= yeoman.app %>/index.html'
+              ],
+              ignorePath: '<%= yeoman.app %>/'
+          }
+      },
 
 
     // Renames files for browser caching purposes
@@ -352,9 +353,7 @@ module.exports = function (grunt) {
                     WarningLevel: 2,
                     WebPublishMethod: 'FileSystem',
                     VisualStudioVersion: '11.0',
-                    PublishUrl: '<%= yeoman.dist %>',
-					outdir: '<%= yeoman.dist %>/',
-					WebProjectOutputDir: '../<%= yeoman.dist %>'
+                    PublishUrl: '../<%= yeoman.dist %>'
                 },
                 verbosity: 'quiet'
             }
@@ -408,7 +407,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'bower-install',
+      'bowerInstall',
       'less',
       'concurrent:server',
       'autoprefixer',
@@ -434,7 +433,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
+    'bowerInstall',
     'useminPrepare',
     'less',
     'concurrent:dist',
