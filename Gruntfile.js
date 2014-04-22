@@ -21,14 +21,14 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: {
       // configurable paths
-      app: require('./bower.json').appPath || 'app',
+      app: require('./bower.json').appPath || 'src',
       dist: 'dist'
     },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/app/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
@@ -101,7 +101,7 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/scripts/{,*/}*.js'
+        '<%= yeoman.app %>/app/{,*/}*.js'
       ],
       test: {
         options: {
@@ -142,15 +142,16 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    'bower-install': {
-      app: {
-        html: '<%= yeoman.app %>/index.html',
-        ignorePath: '<%= yeoman.app %>/'
-      }
-    },
-
-
-
+      bowerInstall: {
+          target: {
+              // Point to the files that should be updated when
+              // you run `grunt bower-install`
+              src: [
+                  '<%= yeoman.app %>/index.html'
+              ],
+              ignorePath: '<%= yeoman.app %>/'
+          }
+      },
 
 
     // Renames files for browser caching purposes
@@ -233,7 +234,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.dist %>',
-          src: ['*.html', 'views/{,*/}*.html'],
+          src: ['*.html', 'app/{,*/}*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -271,7 +272,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'views/{,*/}*.html',
+            'app/{,*/}*.html',
             'bower_components/**/*',
             'images/{,*/}*.{webp}',
             'fonts/*'
@@ -342,7 +343,7 @@ module.exports = function (grunt) {
 
     msbuild: {
         dist: {
-            src: ['app/AngularConcept.csproj'],
+            src: ['<%= yeoman.app %>/AngularConcept.csproj'],
             options: {
                 projectConfiguration: 'Release',
                 targets: ['WebPublish'],
@@ -352,9 +353,7 @@ module.exports = function (grunt) {
                     WarningLevel: 2,
                     WebPublishMethod: 'FileSystem',
                     VisualStudioVersion: '11.0',
-                    PublishUrl: '<%= yeoman.dist %>',
-					outdir: '<%= yeoman.dist %>/',
-					WebProjectOutputDir: '../<%= yeoman.dist %>'
+                    PublishUrl: '../<%= yeoman.dist %>'
                 },
                 verbosity: 'quiet'
             }
@@ -365,13 +364,13 @@ module.exports = function (grunt) {
         server: {
             options: {
                 port: 11233,
-				        path: require('path').resolve('.') + '\\app'
+				        path: require('path').resolve('.') + '\\<%= yeoman.app %>'
             }
         },
 		dist: {
             options: {
                 port: 61143,
-				        path: require('path').resolve('.') + '\\dist'
+				        path: require('path').resolve('.') + '\\<%= yeoman.dist %>'
             }
         }
     },
@@ -379,20 +378,20 @@ module.exports = function (grunt) {
     // grunt-open will open your browser at the project's URL
     open: {
         server: {
-            path: 'http://localhost:11233',
+            path: 'http://localhost:11233'
         },
 		dist: {
-            path: 'http://localhost:61143',
+            path: 'http://localhost:61143'
         }
     },
 
     less: {
         server: {
           options: {
-            paths: ["app/styles/less"]
+            paths: ['<%= yeoman.app %>/styles/less']
           },
           files: {
-            "app/styles/main.css": "app/styles/less/main.less"
+            '<%= yeoman.app %>/styles/main.css': '<%= yeoman.app %>/styles/less/main.less'
           }
         }
       }
@@ -408,7 +407,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'bower-install',
+      'bowerInstall',
       'less',
       'concurrent:server',
       'autoprefixer',
@@ -434,7 +433,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
+    'bowerInstall',
     'useminPrepare',
     'less',
     'concurrent:dist',
@@ -455,10 +454,6 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
-  ]);
-
-  grunt.registerTask('createless', [
-    'less'
   ]);
 
 };
