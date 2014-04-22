@@ -25,7 +25,10 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="container" ng-include="'app/main.html'" ng-controller="MainCtrl"></div>
+<!--<div class="container" ng-include="'app/main.html'" ng-controller="MainCtrl"></div>-->
+<div class="container">
+    <ng-view></ng-view>
+</div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
@@ -56,6 +59,7 @@
 <script src="app/app.js"></script>
 <script src="app/main-controller.js"></script>
 <script src="app/user-filters/service.js"></script>
+<script src="app/user-filters/list-controller.js"></script>
 <script src="app/user-filters/list-directive.js"></script>
 <!-- endbuild -->
 </body>

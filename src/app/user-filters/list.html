@@ -1,8 +1,14 @@
-<div>
-    <h4>User filters from directive</h4>
-    <ul>
-        <li ng-repeat="filter in filters">
-            {{filter.name}}
-        </li>
-    </ul>
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">Angular Concept</h3>
+</div>
+
+<zo-user-filters></zo-user-filters>
+
+<div class="footer">
+  <p>♥ from the Yeoman team</p>
 </div>

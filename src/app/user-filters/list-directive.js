@@ -5,11 +5,11 @@ angular.module('user-filters')
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'app/user-filters/list.html',
-        controller: 'UserFiltersCtrl'
+        templateUrl: 'app/user-filters/list-directive.html',
+        controller: 'UserFiltersDirectiveCtrl'
     }
 })
-    .controller('UserFiltersCtrl', ['$scope', function($scope){
+    .controller('UserFiltersDirectiveCtrl', ['$scope', function($scope){
 
 }]);
 

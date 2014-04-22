@@ -11,6 +11,12 @@ namespace AngularConcept
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+			
+			routes.MapRoute(
+                name: "SPA",
+                url: "{*catchall}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",
