@@ -3,7 +3,7 @@
 describe('Directive: userFilters', function() {
 
     beforeEach(module('user-filters'));
-    beforeEach(module('app/user-filters/list.html'));
+    beforeEach(module('app/user-filters/list-directive.html'));
 
     var scope, el;
 
