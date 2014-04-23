@@ -2,11 +2,11 @@
   "name": "angular-concept",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.6",
+    "angular": "1.2.15",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
-    "jquery": "~1.10.2",
-    "bootstrap": "~3.0.3",
+    "jquery": "~1.11.0",
+    "bootstrap": "~3.1.1",
     "angular-route": "~1.2.15"
   },
   "devDependencies": {
@@ -14,7 +14,6 @@
     "angular-scenario": "1.2.15"
   },
   "resolutions": {
-    "jquery": "~1.11.0",
     "angular": "1.2.15"
   }
 }
