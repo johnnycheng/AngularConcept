@@ -31,7 +31,7 @@ Start the dev site in IIS Express
 
     grunt serve
     
-Build a release version of the site (_dist_)
+Build a release _(dist)_ version of the site 
 
     grunt build
 
@@ -51,9 +51,9 @@ __Run tests with Grunt__
     
 __Run tests with WebStorm__
 
-1. Right click on karma.conf.js file
+1. Right click on _karma.conf.js_ file
 
-2. Select 'Run 'karma.conf.js'
+2. Select _Run 'karma.conf.js'_
 
   
     
