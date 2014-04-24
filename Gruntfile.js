@@ -346,7 +346,7 @@ module.exports = function (grunt) {
             src: ['<%= yeoman.app %>/AngularConcept.csproj'],
             options: {
                 projectConfiguration: 'Release',
-                targets: ['WebPublish'],
+                targets: ['Clean', 'WebPublish'],
                 stdout: true,
                 maxCpuCount: 4,
                 buildParameters: {
