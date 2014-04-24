@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
-using System.Web.Routing;
+using System.Web.Security;
 using Newtonsoft.Json.Serialization;
-using Sentry.Common.Web.Utilities;
+using Sentry.Common.Web.Entities;
 
 namespace AngularConcept
 {
@@ -15,12 +16,25 @@ namespace AngularConcept
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-        }
+       }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
-            HttpContext.Current.SetCurrentUserForRequest(Request);
+            SetCurrentUserForRequest(Request);
+        }
+
+        public static void SetCurrentUserForRequest(HttpRequest request)
+        {
+            var authCookie = request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
+            {
+                var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+
+                var newUser = new CustomPrincipal(authTicket.Name) { SessionKey = authTicket.UserData };
+
+                Thread.CurrentPrincipal = newUser;
+            }
         }
     }
 }
