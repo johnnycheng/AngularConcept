@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Web.Hosting;
 using System.Web.Http;
 
-namespace AngularConcept.Api
+namespace AngularConcept
 {
     public class HomeController : ApiController
     {

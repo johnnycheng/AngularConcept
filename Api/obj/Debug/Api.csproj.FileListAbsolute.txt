@@ -1,0 +1,11 @@
+D:\GitRepo\AngularConcept\Api\bin\Debug\Api.dll
+D:\GitRepo\AngularConcept\Api\bin\Debug\Api.pdb
+D:\GitRepo\AngularConcept\Api\bin\Debug\Newtonsoft.Json.dll
+D:\GitRepo\AngularConcept\Api\bin\Debug\System.Net.Http.Formatting.dll
+D:\GitRepo\AngularConcept\Api\bin\Debug\System.Web.Http.dll
+D:\GitRepo\AngularConcept\Api\bin\Debug\Newtonsoft.Json.xml
+D:\GitRepo\AngularConcept\Api\bin\Debug\System.Net.Http.Formatting.xml
+D:\GitRepo\AngularConcept\Api\bin\Debug\System.Web.Http.xml
+D:\GitRepo\AngularConcept\Api\obj\Debug\Api.csprojResolveAssemblyReference.cache
+D:\GitRepo\AngularConcept\Api\obj\Debug\Api.dll
+D:\GitRepo\AngularConcept\Api\obj\Debug\Api.pdb

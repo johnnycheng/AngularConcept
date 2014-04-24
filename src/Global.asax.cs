@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading;
 using System.Web;
 using System.Web.Http;
-using System.Web.Security;
 using Newtonsoft.Json.Serialization;
-using Sentry.Common.Web.Entities;
+using Sentry.Common.Web.Utilities;
 
 namespace AngularConcept
 {
@@ -12,29 +10,33 @@ namespace AngularConcept
     {
         protected void Application_Start()
         {
-            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-       }
+            GlobalConfiguration.Configure(Register);
+        }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
-            SetCurrentUserForRequest(Request);
+           HttpContext.Current.SetCurrentUserForRequest(Request);
         }
 
-        public static void SetCurrentUserForRequest(HttpRequest request)
+        public static void Register(HttpConfiguration config)
         {
-            var authCookie = request.Cookies[FormsAuthentication.FormsCookieName];
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
-            {
-                var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+            config.MapHttpAttributeRoutes();
 
-                var newUser = new CustomPrincipal(authTicket.Name) { SessionKey = authTicket.UserData };
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
 
-                Thread.CurrentPrincipal = newUser;
-            }
+            config.Routes.MapHttpRoute(
+                name: "Default",
+                routeTemplate: "{*catchall}",
+                defaults: new { controller = "Home" }
+            );
+
         }
     }
 }

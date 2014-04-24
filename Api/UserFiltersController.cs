@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 
-namespace AngularConcept.Api
+namespace Api
 {
     public class UserFiltersController : ApiController
     {
