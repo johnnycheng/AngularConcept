@@ -1,13 +1,13 @@
 AngularConcept
 ==============
 
-AngularJs and ASP.Net MVC site scaffolded with [Yeoman](http://guides.rubyonrails.org/getting_started.html) and uses Grunt and Bower.
+AngularJs and ASP.Net MVC Api website scaffolded with [Yeoman](http://guides.rubyonrails.org/getting_started.html) and uses Grunt and Bower.
 
 ##Getting Started
 
 Requires Node.js to be installed on your machine.
 
-1. Pull down repository
+1. Clone the repository
 
 2. Start Node.js command prompt and cd to repository
 
@@ -34,6 +34,10 @@ Start the dev site in IIS Express
 Build a release _(dist)_ version of the site 
 
     grunt build
+    
+Rebuild the csproj
+
+    grunt msbuild
 
 Start the release version of the site in IIS Express
 
