@@ -1,7 +1,7 @@
 AngularConcept
 ==============
 
-AngularJs and ASP.Net MVC Api website scaffolded with [Yeoman](http://guides.rubyonrails.org/getting_started.html) and uses Grunt and Bower.
+AngularJs and ASP.Net Web Api website scaffolded with [Yeoman](http://guides.rubyonrails.org/getting_started.html) and uses [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/).
 
 ##Getting Started
 
